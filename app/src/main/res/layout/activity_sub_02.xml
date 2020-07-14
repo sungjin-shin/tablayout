@@ -14,9 +14,11 @@
 
         <ImageView
             android:id="@+id/imageView0"
-            android:layout_width="92dp"
+            android:layout_width="90dp"
             android:layout_height="85dp"
+            android:scaleType="centerCrop"
             android:layout_marginTop="0dp"
+            android:layout_gravity="center_vertical"
             android:layout_marginBottom="100dp"
             android:contentDescription="TODO"
             app:srcCompat="@drawable/music" />
@@ -24,6 +26,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
+            android:fontFamily="@font/bm"
             android:layout_toRightOf="@id/imageView0"
             android:id="@+id/editTextFilter"/>
         <ListView

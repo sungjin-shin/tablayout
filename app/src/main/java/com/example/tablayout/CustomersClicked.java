@@ -1,5 +1,6 @@
 package com.example.tablayout;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
@@ -9,6 +10,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 public class CustomersClicked extends Activity implements View.OnClickListener {
@@ -68,6 +70,7 @@ public class CustomersClicked extends Activity implements View.OnClickListener {
         String tel = "tel:" + mNum.getText().toString();
         switch(v.getId()){
             case R.id.btnCall:
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CALL_PHONE},1);
                 startActivity(new Intent("android.intent.action.CALL", Uri.parse(tel)));
             case R.id.btnDial:
                 startActivity(new Intent("android.intent.action.DIAL", Uri.parse(tel)));

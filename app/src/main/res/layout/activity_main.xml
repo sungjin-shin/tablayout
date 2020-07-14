@@ -18,12 +18,14 @@
         android:textSize="26sp"
         android:layout_marginRight="8dp"
         android:id="@+id/textView1"
+        android:fontFamily="@font/bm"
         android:text="Search" />
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@id/textView1"
+        android:fontFamily="@font/bm"
         android:id="@+id/editTextFilter"/>
 
     <ListView
@@ -34,12 +36,13 @@
         android:textFilterEnabled="true"
         android:id="@+id/listview1"/>
 
-    <Button
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/addPhone"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:background="@drawable/ic_baseline_add_circle_24"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"/>
+
 
 </RelativeLayout>

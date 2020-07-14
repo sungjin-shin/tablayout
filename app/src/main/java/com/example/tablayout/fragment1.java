@@ -1,10 +1,12 @@
 package com.example.tablayout;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.AssetManager;
 import android.os.Bundle;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
@@ -18,6 +20,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -88,7 +92,7 @@ public class fragment1 extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(final LayoutInflater inflater, final ViewGroup container,
                              Bundle savedInstanceState) {
         mContext = getContext();
         mView= inflater.inflate(R.layout.activity_main, container, false);
@@ -202,22 +206,35 @@ public class fragment1 extends Fragment {
             }
         });
 
-        Button addButton = (Button) mView.findViewById(R.id.addPhone);
-        addButton.setOnClickListener(new Button.OnClickListener(){
+
+
+        FloatingActionButton phone_fab = mView.findViewById(R.id.addPhone);
+        class PhoneFABClickListener implements View.OnClickListener {
             @Override
-            public void onClick(View v){
-//                int count;
-////                count = adapter.getCount();
-
-                //adapter.addItem(ContextCompat.getDrawable(getApplicationContext(), R.drawable.anonymous), "신성진", "010-9238-7609");
-                list.add(new Customer("신성진", "010-9238-7609", "남자", ContextCompat.getDrawable(mContext, R.drawable.anonymous)));
-                arraylist.add(new Customer("신성진", "010-9238-7609", "남자", ContextCompat.getDrawable(mContext, R.drawable.anonymous)));
-                //addList.add("LIST"+Integer.toString(count+1));
-
-                adapter.notifyDataSetChanged();
-                //Toast.makeText(getApplicationContext(), "와우", Toast.LENGTH_SHORT).show();
+            public void onClick(View view) {
+                AlertDialog.Builder alertDialog = new AlertDialog.Builder(getContext());
+                View addview = inflater.inflate(R.layout.popup, container, false);
+                alertDialog.setView(addview);
+                final EditText nameText =(EditText) addview.findViewById(R.id.editText1);
+                final EditText numText = (EditText)addview.findViewById(R.id.editText2);
+                final EditText genderText =(EditText) addview.findViewById(R.id.editText3);
+                alertDialog.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        String name = nameText.getText().toString();
+                        String num = numText.getText().toString();
+                        String gender = genderText.getText().toString();
+                        list.add(new Customer(name, num, gender, ContextCompat.getDrawable(getContext(), R.drawable.anonymous)));
+                        arraylist.add(new Customer(name, num, gender, ContextCompat.getDrawable(getContext(), R.drawable.anonymous)));
+                        adapter.notifyDataSetChanged();
+                    }
+                });
+                alertDialog.show();
             }
-        });
+        }
+        phone_fab.setOnClickListener(new PhoneFABClickListener());
+
+
 
         // Inflate the layout for this fragment
         return mView;

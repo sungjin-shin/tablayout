@@ -58,7 +58,7 @@ public class GalleryViewPagerFragment extends Fragment {
         ArrayList<ImageModel> images = getArguments().getParcelableArrayList(EXTRA_IMAGES);
         GalleryPagerAdapter galleryPagerAdapter = new GalleryPagerAdapter(getChildFragmentManager(), images);
 
-        ViewPager viewPager = view.findViewById(R.id.animal_view_pager);
+        ViewPagerFixed viewPager = view.findViewById(R.id.animal_view_pager);
         viewPager.setAdapter(galleryPagerAdapter);
         //View pager이 addpter를 설정
         viewPager.setCurrentItem(currentItem);
