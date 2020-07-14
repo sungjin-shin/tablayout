@@ -17,6 +17,8 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.io.IOException;
+
 public class MusicItemClicked extends AppCompatActivity {   // if not working, change to extends Acitivity implements View.OnClickListener
 
     public static MediaPlayer mediaPlayer;
@@ -27,6 +29,8 @@ public class MusicItemClicked extends AppCompatActivity {   // if not working, c
     TextView desc;
     TextView curTime;
     TextView totTime;
+    boolean created=false;
+
 
 
     ImageButton musicOn;
@@ -69,11 +73,15 @@ public class MusicItemClicked extends AppCompatActivity {   // if not working, c
             musicOn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
-                    startService(new Intent(getApplicationContext(), MusicService.class));
-                    initPlayer();
-
-
+                        if(!created) {
+                            musicOn.setImageResource(R.drawable.ic_pause_black_24dp);
+                            startService(new Intent(getApplicationContext(), MusicService.class));
+                            initPlayer();
+                            created=true;
+                        }
+                        else{
+                            play();
+                        }
 
                 }
             });
@@ -82,15 +90,23 @@ public class MusicItemClicked extends AppCompatActivity {   // if not working, c
                 @Override
                 public void onClick(View v) {
                     stopService(new Intent(getApplicationContext(), MusicService.class));
+                    created=false;
                 }
             });
 
-        } else if (music_name.compareTo("사계(Four Seasons)") == 0) {
+        } else if (music_name.compareTo("사계 (Four Seasons)") == 0) {
             musicOn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    startService(new Intent(getApplicationContext(), MusicService1.class));
-                    initPlayer();
+                    if(!created) {
+                        musicOn.setImageResource(R.drawable.ic_pause_black_24dp);
+                        startService(new Intent(getApplicationContext(), MusicService1.class));
+                        initPlayer();
+                        created=true;
+                    }
+                    else{
+                        play();
+                    }
 
                 }
             });
@@ -99,6 +115,7 @@ public class MusicItemClicked extends AppCompatActivity {   // if not working, c
                 @Override
                 public void onClick(View v) {
                     stopService(new Intent(getApplicationContext(), MusicService1.class));
+                    created=false;
                 }
             });
 
@@ -107,8 +124,15 @@ public class MusicItemClicked extends AppCompatActivity {   // if not working, c
             musicOn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    startService(new Intent(getApplicationContext(), MusicService2.class));
-                    initPlayer();
+                    if(!created) {
+                        musicOn.setImageResource(R.drawable.ic_pause_black_24dp);
+                        startService(new Intent(getApplicationContext(), MusicService2.class));
+                        initPlayer();
+                        created=true;
+                    }
+                    else{
+                        play();
+                    }
 
                 }
             });
@@ -117,14 +141,22 @@ public class MusicItemClicked extends AppCompatActivity {   // if not working, c
                 @Override
                 public void onClick(View v) {
                     stopService(new Intent(getApplicationContext(), MusicService2.class));
+                    created=false;
                 }
             });
         } else if( music_name.compareTo("눈(SNOW) (feat.이문세)")==0){
             musicOn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    startService(new Intent(getApplicationContext(), MusicService3.class));
-                    initPlayer();
+                    if(!created) {
+                        musicOn.setImageResource(R.drawable.ic_pause_black_24dp);
+                        startService(new Intent(getApplicationContext(), MusicService3.class));
+                        initPlayer();
+                        created=true;
+                    }
+                    else{
+                        play();
+                    }
 
                 }
             });
@@ -133,6 +165,7 @@ public class MusicItemClicked extends AppCompatActivity {   // if not working, c
                 @Override
                 public void onClick(View v) {
                     stopService(new Intent(getApplicationContext(), MusicService3.class));
+                    created=false;
                 }
             });
 
@@ -141,8 +174,15 @@ public class MusicItemClicked extends AppCompatActivity {   // if not working, c
             musicOn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    startService(new Intent(getApplicationContext(), MusicService4.class));
-                    initPlayer();
+                    if(!created) {
+                        musicOn.setImageResource(R.drawable.ic_pause_black_24dp);
+                        startService(new Intent(getApplicationContext(), MusicService4.class));
+                        initPlayer();
+                        created=true;
+                    }
+                    else{
+                        play();
+                    }
 
                 }
             });
@@ -151,6 +191,7 @@ public class MusicItemClicked extends AppCompatActivity {   // if not working, c
                 @Override
                 public void onClick(View v) {
                     stopService(new Intent(getApplicationContext(), MusicService4.class));
+                    created=false;
                 }
             });
 
@@ -159,6 +200,9 @@ public class MusicItemClicked extends AppCompatActivity {   // if not working, c
 
     }
     private void initPlayer(){
+
+
+
         mSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             public void onStopTrackingTouch(SeekBar seekBar) {
 
@@ -221,6 +265,26 @@ public class MusicItemClicked extends AppCompatActivity {   // if not working, c
         }
         timerLabel += sec;
         return timerLabel;
+    }
+
+    private void play() {
+
+        if (mediaPlayer != null && !mediaPlayer.isPlaying()) {
+            mediaPlayer.start();
+            musicOn.setImageResource(R.drawable.ic_pause_black_24dp);
+        } else {
+            pause();
+        }
+
+    }
+
+    private void pause() {
+        if (mediaPlayer !=null && mediaPlayer.isPlaying()) {
+            mediaPlayer.pause();
+            musicOn.setImageResource(R.drawable.ic_play_arrow_black_24dp);
+
+        }
+
     }
 }
 
