@@ -1,14 +1,18 @@
 package com.example.tablayout;
 
+import android.graphics.drawable.Drawable;
+
 public class Customer {
     String name;
     String phone;
     String gender;
+    Drawable image;
 
-    Customer(String name, String phone, String gender){
+    Customer(String name, String phone, String gender, Drawable image){
         this.name = name;
         this.phone = phone;
         this.gender = gender;
+        this.image = image;
     }
 
     public String getName(){
@@ -23,6 +27,8 @@ public class Customer {
         return phone;
     }
 
+    public Drawable getImage() {return image;}
+
     public void setName(String Name){
         name = Name;
     }
@@ -32,4 +38,5 @@ public class Customer {
     public void setPhone(String Phone){
         phone = Phone;
     }
+    public void setImage(Drawable Image) {image = Image;}
 }

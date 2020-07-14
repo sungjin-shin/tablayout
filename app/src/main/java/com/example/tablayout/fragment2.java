@@ -1,9 +1,13 @@
 package com.example.tablayout;
 
+import android.content.Context;
 import android.os.Bundle;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
+import android.view.ActionProvider;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +18,9 @@ import android.view.ViewGroup;
  * create an instance of this fragment.
  */
 public class fragment2 extends Fragment {
+
+    Context mContext;
+    View mView;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -59,6 +66,19 @@ public class fragment2 extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_fragment2, container, false);
+
+        mContext = getContext();
+        mView= inflater.inflate(R.layout.activity_sub_01, container, false);
+
+//        Toolbar toolbar = mView.findViewById(R.id.toolbar);
+//        ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
+
+        //Launching the RecyclerViewFragement
+        getFragmentManager()
+                .beginTransaction()
+                .add(R.id.content, RecyclerViewFragment.newInstance())
+                .commit();
+
+        return mView;
     }
 }

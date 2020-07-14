@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.tablayout">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -17,6 +19,16 @@
             </intent-filter>
         </activity>
         <activity android:name=".CustomersClicked"></activity>
+        <activity android:name=".MusicItemClicked"></activity>
+
+        <service android:name=".MusicService"/>
+        <service android:name=".MusicService1"/>
+        <service android:name=".MusicService2"/>
+        <service android:name=".MusicService3"/>
+        <service android:name=".MusicService4"/>
+<!--        <activity -->
+<!--            android:name=".SubActivity_01"-->
+<!--            android:label="SubActivity_01"/>-->
     </application>
 
 </manifest>

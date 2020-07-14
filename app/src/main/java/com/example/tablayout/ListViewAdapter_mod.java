@@ -47,6 +47,7 @@ public class ListViewAdapter_mod extends BaseAdapter {
 
             viewHolder.textView1 = (TextView) convertView.findViewById(R.id.textView1);
             viewHolder.textView2 = (TextView) convertView.findViewById(R.id.textView2);
+            viewHolder.imageView = (ImageView) convertView.findViewById(R.id.imageView1);
 
             convertView.setTag(viewHolder);
         }
@@ -54,7 +55,7 @@ public class ListViewAdapter_mod extends BaseAdapter {
             viewHolder = (ViewHolder)convertView.getTag();
         }
 
-//        viewHolder.imageView.setImageDrawable();
+        viewHolder.imageView.setImageDrawable(list.get(position).getImage());
         viewHolder.textView1.setText(list.get(position).getName());
         viewHolder.textView2.setText(list.get(position).getPhone());
 

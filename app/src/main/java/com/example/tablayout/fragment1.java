@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.res.AssetManager;
 import android.os.Bundle;
 
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import android.text.Editable;
@@ -103,7 +104,7 @@ public class fragment1 extends Fragment {
 
         ////////////json 파일의 정보를 불러와서 파싱하는 과정///////////
         try {
-            InputStream is= assetManager.open("data.json");
+            InputStream is= assetManager.open("data1.json");
             InputStreamReader isr= new InputStreamReader(is);
             BufferedReader reader= new BufferedReader(isr);
 
@@ -116,6 +117,16 @@ public class fragment1 extends Fragment {
 
             String jsonData= buffer.toString();
             JSONArray jsonArray= new JSONArray(jsonData);
+            ArrayList<Integer> myImageList = new ArrayList<>();
+            myImageList.add(R.drawable.image1);
+            myImageList.add(R.drawable.image2);
+            myImageList.add(R.drawable.image3);
+            myImageList.add(R.drawable.image4);
+            myImageList.add(R.drawable.image5);
+            myImageList.add(R.drawable.image6);
+            myImageList.add(R.drawable.image7);
+            myImageList.add(R.drawable.image8);
+            myImageList.add(R.drawable.image9);
 
             String s="";
 
@@ -125,7 +136,7 @@ public class fragment1 extends Fragment {
                 String name= jo.getString("name");
                 String msg= jo.getString("msg");
                 String gender = jo.getString("gender");
-                list.add(new Customer(name, msg, gender));
+                list.add(new Customer(name, msg, gender, ContextCompat.getDrawable(mContext, myImageList.get(i))));
                 //items.add(new Customer(name, msg, gender));
                 //JSONObject flag=jo.getJSONObject("flag");
                 //int aa= flag.getInt("aa");
@@ -199,8 +210,8 @@ public class fragment1 extends Fragment {
 ////                count = adapter.getCount();
 
                 //adapter.addItem(ContextCompat.getDrawable(getApplicationContext(), R.drawable.anonymous), "신성진", "010-9238-7609");
-                list.add(new Customer("신성진", "010-9238-7609", "남자"));
-                arraylist.add(new Customer("신성진", "010-9238-7609", "남자"));
+                list.add(new Customer("신성진", "010-9238-7609", "남자", ContextCompat.getDrawable(mContext, R.drawable.anonymous)));
+                arraylist.add(new Customer("신성진", "010-9238-7609", "남자", ContextCompat.getDrawable(mContext, R.drawable.anonymous)));
                 //addList.add("LIST"+Integer.toString(count+1));
 
                 adapter.notifyDataSetChanged();
