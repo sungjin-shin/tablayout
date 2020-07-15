@@ -22,7 +22,9 @@ Week1 조호연, 신성진 project 설명
   - button과 intent를 이용하여 '전화번호를 다이얼로 바로 이동', '전화번호로 바로 전화' 기능 구현
 
 <2번 탭 - 갤러리>
-  - 갤러리 - RecyclerView와 ViewPager를 이용하여 구현
+  - 갤러리 - RecyclerView와 ViewPager (Fragements) 를 이용하여 구현
+  - Glide 와 PhotoView 라는 library 사용
+
   - 메인 탭의 fragment와 연결되는 RecyclerViewFragment.java에서 recyclerview (gridLayoutManager)를 형성 후 galleryAdapter와 연결
   - 사진 슬라이드 및 확대, 축소 가능 (축소 시 pointerIndex out of range)
   - 위 에러 해결 위해 ViewPagerFixed를 implement하여 exception을 모두 무시하려 했으나, 연속으로 축소하는 경우 여전히 에러 발생
